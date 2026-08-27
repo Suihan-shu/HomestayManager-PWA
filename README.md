@@ -1,6 +1,6 @@
 # HomestayManager APP
 
-一个面向 iPhone 的本地离线民宿房态管理 PWA，用房间 × 日期日历替代 Excel 色块。
+一个面向手机的本地离线民宿房态管理 PWA，用房间 × 日期日历替代 Excel 色块。
 
 ## 已实现功能
 
@@ -12,7 +12,11 @@
 - 同一房间日期冲突检查
 - 浏览器本地持久化，无账号、服务器和联网依赖
 - JSON 数据导出与恢复
-- iPhone 添加到主屏幕及离线缓存
+- Android / iPhone 添加到主屏幕及离线缓存
+
+## 在线地址
+
+<https://suihan-shu.github.io/HomestayManager-PWA/>
 
 ## 本地运行
 
@@ -29,11 +33,11 @@ npm run dev
 npm run build
 ```
 
-## iPhone 安装
+## 安装到手机
 
-1. 使用 Safari 打开已部署的网站。
-2. 点击 Safari 的“分享”。
-3. 选择“添加到主屏幕”。
-4. 点击“添加”。
+1. 使用手机浏览器打开在线地址。
+2. Android 打开浏览器菜单；iPhone 点击 Safari 的“分享”。
+3. 选择“添加到主屏幕”或“安装应用”。
+4. 按页面提示确认安装。
 
 数据只保存在当前设备浏览器中。建议定期在 App 的“数据备份”中导出 JSON 文件。

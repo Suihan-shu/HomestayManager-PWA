@@ -1,5 +1,11 @@
-const CACHE_NAME = "homestay-manager-v1";
-const APP_SHELL = ["/", "/manifest.webmanifest", "/icon-192.png", "/icon-512.png"];
+const CACHE_NAME = "homestay-manager-github-v1";
+const BASE_URL = self.registration.scope;
+const APP_SHELL = [
+  BASE_URL,
+  new URL("manifest.webmanifest", BASE_URL).href,
+  new URL("icon-192.png", BASE_URL).href,
+  new URL("icon-512.png", BASE_URL).href,
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));
@@ -23,7 +29,7 @@ self.addEventListener("fetch", (event) => {
           }
           return response;
         })
-        .catch(() => cached ?? (event.request.mode === "navigate" ? caches.match("/") : Promise.reject(new Error("offline"))));
+        .catch(() => cached ?? (event.request.mode === "navigate" ? caches.match(BASE_URL) : Promise.reject(new Error("offline"))));
       return cached ?? network;
     })
   );

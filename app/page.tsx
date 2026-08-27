@@ -17,7 +17,6 @@ type StayDraft = Omit<StayRecord, "id"> & { id?: string };
 type SheetName = "actions" | "rooms" | "stay" | "backup" | "install" | null;
 
 const STORAGE_KEY = "homestay-manager-data-v1";
-const DAY_WIDTH = 76;
 const VISIBLE_DAYS = 30;
 
 function localDateKey(date: Date) {
@@ -108,7 +107,9 @@ export default function Home() {
     }
 
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js").catch(() => undefined);
+      navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`, {
+        scope: import.meta.env.BASE_URL,
+      }).catch(() => undefined);
     }
   }, []);
 
@@ -466,12 +467,12 @@ export default function Home() {
       )}
 
       {sheet === "install" && (
-        <Sheet title="安装到 iPhone" onClose={() => setSheet(null)}>
+        <Sheet title="安装到手机" onClose={() => setSheet(null)}>
           <ol className="install-steps">
-            <li><b>1</b><span>使用 <strong>Safari</strong> 打开这个页面</span></li>
-            <li><b>2</b><span>点击 Safari 底部的 <strong>分享</strong> 按钮</span></li>
-            <li><b>3</b><span>选择 <strong>“添加到主屏幕”</strong></span></li>
-            <li><b>4</b><span>点击右上角 <strong>“添加”</strong></span></li>
+            <li><b>1</b><span>使用手机浏览器打开这个页面</span></li>
+            <li><b>2</b><span>Android 点击浏览器菜单，iPhone 点击 Safari 的<strong>分享</strong></span></li>
+            <li><b>3</b><span>选择 <strong>“添加到主屏幕”</strong>或<strong>“安装应用”</strong></span></li>
+            <li><b>4</b><span>按页面提示确认安装</span></li>
           </ol>
           <p className="install-note">安装后可从主屏幕直接打开。首次打开并加载完成后，没有网络也能继续使用。</p>
         </Sheet>
